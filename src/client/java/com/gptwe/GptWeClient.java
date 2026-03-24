@@ -6,12 +6,9 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
 
 public class GptWeClient implements ClientModInitializer {
 	private static KeyMapping openKey;
-	private static final KeyMapping.Category CATEGORY =
-			KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath("gptwe", "general"));
 
 	@Override
 	public void onInitializeClient() {
@@ -19,7 +16,7 @@ public class GptWeClient implements ClientModInitializer {
 				"key.gptwe.open",
 				InputConstants.Type.KEYSYM,
 				InputConstants.KEY_P,
-				CATEGORY
+				KeyMapping.Category.MISC
 		));
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {

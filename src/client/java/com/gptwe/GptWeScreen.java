@@ -47,6 +47,9 @@ public class GptWeScreen extends Screen {
         new Thread(() -> {
             try {
                 String response = OpenAiWeClient.getWorldEditText(prompt);
+                System.out.println("[gptwe] LLM response start");
+                System.out.println(response);
+                System.out.println("[gptwe] LLM response end");
                 client.execute(() -> WorldEditCommandRunner.runAllWorldEditLines(response));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -58,8 +61,10 @@ public class GptWeScreen extends Screen {
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        this.renderBackground(graphics, mouseX, mouseY, delta);
+        this.renderTransparentBackground(graphics);
         super.render(graphics, mouseX, mouseY, delta);
         graphics.drawString(this.font, this.title, 10, 10, 0xFFFFFF);
+        graphics.drawString(this.font, "Click the text box below first, then type your prompt.", 10, 25, 0xAAAAAA);
+        graphics.drawString(this.font, "WorldEdit needs cheats on: Esc -> Open to LAN -> Allow Cheats ON", 10, 37, 0x888888);
     }
 }

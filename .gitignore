@@ -32,6 +32,10 @@ bin/
 
 run/
 
+# local secrets (API keys etc.)
+
+local.properties
+
 # java
 
 hs_err_*.log
